@@ -17,7 +17,7 @@ ThemeData _buildShrineTheme() {
           color: kShrineBrown900,
         ),
       ),
-      border: CutCornersBorder(), // Replace code
+      border: CutCornersBorder(),
     ),
     textTheme: _buildShrineTextTheme(base.textTheme),
     textSelectionTheme: const TextSelectionThemeData(
@@ -64,7 +64,7 @@ class ShrineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: const HomePage(),
+      home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       theme: _kShrineTheme,

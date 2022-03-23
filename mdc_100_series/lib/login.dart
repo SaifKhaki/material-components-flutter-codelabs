@@ -15,17 +15,6 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordFocusNode = FocusNode();
 
   @override
-  void initState() {
-    super.initState();
-    _usernameFocusNode.addListener(() {
-      setState(() {});
-    });
-    _passwordFocusNode.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -68,8 +57,6 @@ class _LoginPageState extends State<LoginPage> {
               focusNode: _passwordFocusNode,
               obscureText: true,
             ),
-
-            // TODO: Add button bar (101)
             ButtonBar(children: <Widget>[
               TextButton(
                 onPressed: () {
@@ -83,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   shape: MaterialStateProperty.all(
                     const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(2.0)),
                     ),
                   ),
                 ),
@@ -97,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   elevation: MaterialStateProperty.all(8.0),
                   shape: MaterialStateProperty.all(
                     const BeveledRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                      borderRadius: BorderRadius.all(Radius.circular(2.0)),
                     ),
                   ),
                 ),
@@ -109,5 +96,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-// TODO: Add AccentColorOverride (103)
