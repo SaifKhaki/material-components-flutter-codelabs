@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'supplemental/cut_corners_border.dart';
 
+import 'backdrop.dart';
+import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
-import 'colors.dart';
+import 'category_menu_page.dart';
+import 'model/product.dart';
+import 'supplemental/cut_corners_border.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -57,14 +61,29 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
       );
 }
 
-class ShrineApp extends StatelessWidget {
-  const ShrineApp({Key? key}) : super(key: key);
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
+
+  void _onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: HomePage(),
+      home: Backdrop(
+        currentCategory: _currentCategory,
+        frontLayer: HomePage(category: _currentCategory),
+        backLayer: CategoryMenuPage(
+          currentCategory: _currentCategory,
+          onCategoryTap: _onCategoryTap,
+        ),
+        frontTitle: Text('SHRINE'),
+        backTitle: Text('MENU'),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       theme: _kShrineTheme,
@@ -82,4 +101,11 @@ class ShrineApp extends StatelessWidget {
       fullscreenDialog: true,
     );
   }
+}
+
+class ShrineApp extends StatefulWidget {
+  const ShrineApp({Key? key}) : super(key: key);
+
+  @override
+  _ShrineAppState createState() => _ShrineAppState();
 }
